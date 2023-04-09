@@ -32,6 +32,7 @@ namespace OtoServisSatis.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Marka>().Property(x=>x.Adi).HasMaxLength(30).IsRequired();
+            modelBuilder.Entity<Rol>().Property(x=>x.Adi).HasMaxLength(30).IsRequired();
 
             modelBuilder.Entity<Rol>()
           .HasData(
@@ -50,7 +51,6 @@ namespace OtoServisSatis.Data
           Email = "admin@otoservissatis.tc",
           KullaniciAdi = "admin",
           Sifre = "123456",
-          Rol = new Rol { Id = 1 },
           RolId = 1
       });
         }

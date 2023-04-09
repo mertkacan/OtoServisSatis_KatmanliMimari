@@ -1,0 +1,24 @@
+﻿@model OtoServisSatis.Entities.Rol
+
+@{
+    ViewData["Title"] = "Rol Düzenleme Sayfası";
+}
+
+<h1 class="m-2">Rol Düzenleme</h1>
+<hr />
+
+<div class="row">
+    <div class="col md-4">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger "></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Adi" class="control-label"></label>
+                <input asp-for="Adi" class="form-control" />
+                <input type="submit" value="Kaydet" class="btn btn-primary mt-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
