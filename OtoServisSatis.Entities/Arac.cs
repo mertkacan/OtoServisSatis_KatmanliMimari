@@ -16,8 +16,10 @@ namespace OtoServisSatis.Entities
         [MaxLength(50)]
         public string Modeli { get; set; }
         [MaxLength(50)]
+        [Display(Name = "Kasa tipi")]
         public string KasaTipi { get; set; }
         public int ModelYili { get; set; }
+        [Display(Name ="Satışta mı?")]
         public bool SatistaMi { get; set; }
         public string Notlar { get; set; }
         public virtual Marka? Marka { get; set; } // Araç ile Marka sınıfı arasındaki bağlantı. Nullable yaptık.

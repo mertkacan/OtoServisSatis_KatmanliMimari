@@ -1,0 +1,66 @@
+﻿@model IEnumerable<OtoServisSatis.Entities.Kullanici>
+
+@{
+    ViewData["Title"] = "Kullanici Listeleme";
+}
+
+<h1>Kullanıcı Listeleme Sayfası</h1>
+<p>
+    <a class="btn btn-primary my-2" asp-action="Create"> Kullanıcı Ekle </a>
+</p>
+
+<table class="table">
+    <thead>
+    <th>
+        Adi
+    </th>
+    <th>
+        Soyadi
+    </th>
+    <th>
+        Email
+    </th>
+    <th>
+        Telefon
+    </th>
+    <th>
+        KullaniciAdi
+    </th>
+    <th>
+        Sifre
+    </th>
+    <th>
+        AktifMi
+    </th>
+    <th>
+        Eklenme Tarihi
+    </th>
+    <th>
+        Rol Adı
+    </th>
+    <th>
+
+    </th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Adi</td>
+                <td>@item.Soyadi</td>
+                <td>@item.Email</td>
+                <td>@item.Telefon</td>
+                <td>@item.KullaniciAdi</td>
+                <td>@item.Sifre</td>
+                <td>@item.AktifMi</td>
+                <td>@item.EklenmeTarihi</td>
+                <td>@item.Rol?.Adi</td>
+                <td>
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

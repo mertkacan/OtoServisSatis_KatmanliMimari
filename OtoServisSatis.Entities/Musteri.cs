@@ -15,6 +15,7 @@ namespace OtoServisSatis.Entities
         [MaxLength(50)]
         public string Soyadi { get; set; }
         [MaxLength(11)]
+        [Display(Name ="Kimlik Numarası")]
         public string? TcNo { get; set; }
         [MaxLength(50)]
         public string Email { get; set; }
