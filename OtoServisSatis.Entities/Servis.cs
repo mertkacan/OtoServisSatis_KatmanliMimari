@@ -10,12 +10,16 @@ namespace OtoServisSatis.Entities
     public class Servis:IEntity
     {
         public int Id { get; set; }
+        [Display(Name = "Servise geliş tarihi")]
         public DateTime ServiseGelisTarihi { get; set; }
         [MaxLength(150)]
+        [Display(Name = "Araç Sorunu")]
         public string AracSorunu { get; set; }
         public decimal ServisUcreti { get; set; }
+        [Display(Name = "Servisten çıkış tarihi")]
         public DateTime ServistenCikisTarihi { get; set; }
         public string? YapilanIslemler { get; set; }
+        [Display(Name = "Garanti kapsamında mı?")]
         public bool GarantiKapsamindaMi { get; set; }
         [MaxLength(15)]
         public string AracPlaka { get; set; }
