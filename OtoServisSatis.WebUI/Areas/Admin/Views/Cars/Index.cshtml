@@ -1,0 +1,47 @@
+﻿@model IEnumerable<OtoServisSatis.Entities.Arac>
+
+@{
+    ViewData["Title"] = "Listeleme Sayfası";
+}
+
+<h1 class="my-4">Araç Listeleme Sayfası</h1>
+
+<p>
+    <a class="btn btn-primary my-2" asp-action="Create">Model Ekle</a>
+</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>MarkaId</th>
+            <th>Renk</th>
+            <th>Fiyatı</th>
+            <th>Modeli</th>
+            <th>Kasa Tipi</th>
+            <th>Model Yılı</th>
+            <th>Satışta Mı</th>
+            <th>Notlar</th>
+            <th>Marka</th>
+            <th></th>
+        </tr>
+    </thead>  
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MarkaId</td>
+                <td>@item.Renk</td>
+                <td>@item.Fiyati</td>
+                <td>@item.Modeli</td>
+                <td>@item.KasaTipi</td>
+                <td>@item.ModelYili</td>
+                <td>@item.SatistaMi</td>
+                <td>@item.Notlar</td>
+                <td>
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

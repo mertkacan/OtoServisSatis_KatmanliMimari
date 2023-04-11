@@ -1,0 +1,44 @@
+﻿@model IEnumerable<OtoServisSatis.Entities.Musteri>
+
+@{
+    ViewData["Title"] = "Müşteri Listeleme Sayfası";
+}
+
+<h1>Müşteri Listeleme Sayfası</h1>
+
+<p>
+    <a class="btn btn-primary my-2" asp-action="Create">Müşteri Ekle</a>
+</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Adı</th>
+            <th>Soyadı</th>
+            <th>TC No</th>
+            <th>Email</th>
+            <th>Adres</th>
+            <th>Telefon</th>
+            <th>Notlar</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Adi</td>
+                <td>@item.Soyadi</td>
+                <td>@item.TcNo</td>
+                <td>@item.Email</td>
+                <td>@item.Adres</td>
+                <td>@item.Telefon</td>
+                <td>@item.Notlar</td>
+                <td>
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

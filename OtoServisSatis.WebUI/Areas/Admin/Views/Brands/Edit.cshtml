@@ -1,0 +1,17 @@
+﻿@model OtoServisSatis.Entities.Marka
+
+@{
+    ViewData["Title"] = "Düzenleme Sayfası";
+}
+
+<h1>Düzenleme Sayfası</h1>
+
+<form asp-action="Edit" method="post">
+    <div>
+        <label asp-for="Adi"></label>
+        <input asp-for="Adi" class="form-control" />
+        <input class="btn btn-primary my-2" type="submit" value="Kaydet" />
+        <a class="btn btn-success" asp-action="Index">Anasayfaya geri dön</a>
+    </div>
+</form>
+

@@ -12,7 +12,7 @@ namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
         private readonly IService<Kullanici> _service;
         private readonly IService<Rol> _serviceRol; // Create View'a, RolId göndermek için oluşturdum.
 
-        public UsersController(IService<Kullanici>service, IService<Rol>serviceRol)
+        public UsersController(IService<Kullanici> service, IService<Rol> serviceRol)
         {
             _service = service;
             _serviceRol = serviceRol;
@@ -20,7 +20,7 @@ namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
         // GET: UsersController
         public async Task<ActionResult> Index()
         {
-            var kullanicilar= await _service.GetAllAsync();
+            var kullanicilar = await _service.GetAllAsync();
             return View(kullanicilar);
         }
 
@@ -33,7 +33,7 @@ namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
         // GET: UsersController/Create
         public async Task<ActionResult> Create()
         {
-            ViewBag.RolId=new SelectList(await _serviceRol.GetAllAsync(),"Id","Adi"); // UserId seçmek için Listeyi, Create Action'ına gönderdim. Metin olarak Rol sınıfındaki kolonları yazdım. 
+            ViewBag.RolId = new SelectList(await _serviceRol.GetAllAsync(), "Id", "Adi"); // RolId seçmek için Listeyi, Create Action'ına gönderdim. Metin olarak Rol sınıfındaki kolonları yazdım. 
             return View();
         }
 
@@ -46,13 +46,13 @@ namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
             {
                 try
                 {
-                     _service.AddAsync(kullanici);
+                    _service.AddAsync(kullanici);
                     await _service.SaveAsync();
                     return RedirectToAction(nameof(Index));
                 }
                 catch
                 {
-                    ModelState.AddModelError("","Hata Oluştu");
+                    ModelState.AddModelError("", "Hata Oluştu");
                 }
             }
             ViewBag.RolId = new SelectList(await _serviceRol.GetAllAsync(), "Id", "Adi");
@@ -63,7 +63,7 @@ namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
         // GET: UsersController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var model= await _service.FindAsync(id);
+            var model = await _service.FindAsync(id);
             ViewBag.RolId = new SelectList(await _serviceRol.GetAllAsync(), "Id", "Adi"); // ViewBag listeleme.
             return View(model);
         }
@@ -86,18 +86,21 @@ namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
         }
 
         // GET: UsersController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var model = await _service.FindAsync(id);
+            return View(model);
         }
 
         // POST: UsersController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Kullanici kullanici)
         {
             try
             {
+                _service.Delete(kullanici);
+                _service.SaveAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch

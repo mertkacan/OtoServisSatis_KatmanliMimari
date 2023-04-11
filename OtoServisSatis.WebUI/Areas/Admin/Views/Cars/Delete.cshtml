@@ -1,0 +1,64 @@
+﻿@model OtoServisSatis.Entities.Arac
+
+@{
+    ViewData["Title"] = "Arac Silme Sayfası";
+}
+
+<h1>Araç Silme Sayfası</h1>
+
+<h4>Silme işlemi yapmaktan emin olunuz.</h4>
+
+<div>
+    <h4>Araç</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Renk
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Renk)
+        </dd>
+        <dt class="col-sm-2">
+            Fiyat
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fiyati)
+        </dd>
+        <dt class="col-sm-2">
+            Model
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Modeli)
+        </dd>
+        <dt class="col-sm-2">
+            Kasa Tipi
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.KasaTipi)
+        </dd>
+        <dt class="col-sm-2">
+            Model Yılı
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ModelYili)
+        </dd>
+        <dt class="col-sm-2">
+            Satışta mı?
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SatistaMi)
+        </dd>
+        <dt class="col-sm-2">
+            Notlar
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Notlar)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Sil" class="btn btn-danger" />
+        <a asp-action="Index">Listeye Geri Dön</a>
+    </form>
+</div>
