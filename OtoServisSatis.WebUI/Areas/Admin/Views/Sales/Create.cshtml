@@ -1,0 +1,33 @@
+﻿@model OtoServisSatis.Entities.Satis
+
+@{
+    ViewData["Ttile"] = "Satis Ekleme";
+}
+
+<h1>Satış Ekleme Sayfası</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div>
+                <label asp-for="AracId"></label>
+                <select asp-for="AracId" class="form-select" asp-items="ViewBag.AracId"> </select>
+            </div>
+            <div>
+                <label asp-for="MusteriId"></label>
+                <select asp-for="MusteriId" class="form-select" asp-items="ViewBag.MusteriId"> </select>
+            </div>
+            <div>
+                <label asp-for="SatisFiyati"></label>
+                <input asp-for="SatisFiyati" class="form-control" />
+                <span asp-validation-for="SatisFiyati" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="SatisTarihi"></label>
+                <input asp-for="SatisTarihi" class="form-control" />
+                <span asp-validation-for="SatisTarihi" class="text-danger"></span>
+            </div>
+            <input class="btn btn-primary my-2" type="submit" value="Ekle" />
+        </form>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OtoServisSatis.Entities.Satis>
+
+@{
+    ViewData["Ttile"] = "Satış Listeleme Sayfası";
+}
+
+<h1>Satış listeleme sayfası</h1>
+
+<p>
+    <a class="btn btn-primary my-2" asp-action="Create">Satış Ekle</a>
+</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>SatisFiyati</th>
+            <th>SatisTarihi</th>
+            <th>Araç</th>
+            <th>Müşteri</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.SatisFiyati</td>
+                <td>@item.SatisTarihi</td>
+                <td>@item.AracId</td>
+                <td>@item.MusteriId</td>
+                <td>
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

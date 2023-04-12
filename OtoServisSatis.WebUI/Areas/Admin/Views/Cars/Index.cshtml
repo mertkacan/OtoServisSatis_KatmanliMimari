@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<OtoServisSatis.Entities.Arac>
 
 @{
-    ViewData["Title"] = "Listeleme Sayfası";
+    ViewData["Title"] = "Araç Listeleme Sayfası";
 }
 
 <h1 class="my-4">Araç Listeleme Sayfası</h1>
@@ -13,15 +13,13 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>MarkaId</th>
             <th>Renk</th>
-            <th>Fiyatı</th>
-            <th>Modeli</th>
+            <th>Fiyat</th>
+            <th>Model</th>
             <th>Kasa Tipi</th>
             <th>Model Yılı</th>
             <th>Satışta Mı</th>
             <th>Notlar</th>
-            <th>Marka</th>
             <th></th>
         </tr>
     </thead>  
@@ -29,7 +27,6 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.MarkaId</td>
                 <td>@item.Renk</td>
                 <td>@item.Fiyati</td>
                 <td>@item.Modeli</td>

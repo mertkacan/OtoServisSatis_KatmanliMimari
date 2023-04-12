@@ -25,6 +25,7 @@ namespace OtoServisSatis.Entities
         public string? Telefon { get; set; }
         public string? Notlar { get; set; }
         public virtual Arac? Arac { get; set; }
+        [Display(Name ="Araç")]
         public int AracId { get; set; }
 
 

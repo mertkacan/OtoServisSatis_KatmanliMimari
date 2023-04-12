@@ -33,7 +33,7 @@ namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
         // GET: UsersController/Create
         public async Task<ActionResult> Create()
         {
-            ViewBag.RolId = new SelectList(await _serviceRol.GetAllAsync(), "Id", "Adi"); // RolId seçmek için Listeyi, Create Action'ına gönderdim. Metin olarak Rol sınıfındaki kolonları yazdım. 
+            ViewBag.RolId = new SelectList(await _serviceRol.GetAllAsync(), "Id", "Adi"); // RolId seçmek için Listeyi, Create View'ına gönderdim. Metin olarak Rol sınıfındaki kolonları yazdım. 
             return View();
         }
 

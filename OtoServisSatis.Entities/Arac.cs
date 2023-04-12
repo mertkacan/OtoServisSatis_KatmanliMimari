@@ -23,6 +23,7 @@ namespace OtoServisSatis.Entities
         public bool SatistaMi { get; set; }
         public string Notlar { get; set; }
         public virtual Marka? Marka { get; set; } // Araç ile Marka sınıfı arasındaki bağlantı. Nullable yaptık.
+        [Display(Name ="Marka Adı")]
         public int MarkaId { get; set; }
 
     }

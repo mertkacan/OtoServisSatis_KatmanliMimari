@@ -1,0 +1,54 @@
+﻿@model IEnumerable<OtoServisSatis.Entities.Servis>
+
+@{
+    ViewData["Title"] = "Listeleme Sayfası";
+}
+
+<h1 class="my-4">Araç Listeleme Sayfası</h1>
+
+<p>
+    <a class="btn btn-primary my-2" asp-action="Create">Model Ekle</a>
+</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Servise Geliş Tarihi</th>
+            <th>Araç Sorunu</th>
+            <th>Servis Ücreti</th>
+            <th>Servisten Çıkış Tarihi</th>
+            <th>Yapılan İşlemler</th>
+            <th>Garanti Kapsamında Mı?</th>
+            <th>Araç Plaka</th>
+            <th>Marka</th>
+            <th>Model</th>
+            <th>Kasa Tipi</th>
+            <th>Şase No</th>
+            <th>Notlar</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ServiseGelisTarihi</td>
+                <td>@item.AracSorunu</td>
+                <td>@item.ServisUcreti</td>
+                <td>@item.ServistenCikisTarihi</td>
+                <td>@item.YapilanIslemler</td>
+                <td>@item.GarantiKapsamindaMi</td>
+                <td>@item.AracPlaka</td>
+                <td>@item.Marka</td>
+                <td>@item.Model</td>
+                <td>@item.KasaTipi</td>
+                <td>@item.SaseNo</td>
+                <td>@item.Notlar</td>
+                <td>
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

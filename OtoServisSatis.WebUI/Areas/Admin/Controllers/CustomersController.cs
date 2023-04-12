@@ -33,7 +33,7 @@ namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
         // GET: CustomersController/Create
         public async Task<ActionResult> Create()
         {
-            ViewBag.AracId=new SelectList (await _serviceArac.GetAllAsync(),"Id","Modeli");
+            ViewBag.AracId = new SelectList(await _serviceArac.GetAllAsync(), "Id", "Modeli");    // Yandaki kod ile Araç bilgilerini Create View'ına göndermiş oldum.
             return View();
         }
 
@@ -46,8 +46,8 @@ namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
             {
                 try
                 {
-                     _service.Add(musteri);
-                     _service.Save();
+                    _service.Add(musteri);
+                    _service.Save();
                     return RedirectToAction(nameof(Index));
                 }
                 catch
@@ -62,38 +62,49 @@ namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
         // GET: CustomersController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.AracId = new SelectList(_serviceArac.GetAll(), "Id", "Modeli");
+            var model = _service.Find(id);
+            return View(model);
         }
 
         // POST: CustomersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, Musteri musteri)
         {
-            try
+            if (ModelState.IsValid)
             {
-                ViewBag.AracId = new SelectList(await _serviceArac.GetAllAsync(), "Id", "Adi");
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _service.Update(musteri);
+                    await _service.SaveAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Hata oluştu.");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            ViewBag.AracId = new SelectList(await _serviceArac.GetAllAsync(), "Id", "Adi");
+            return View(musteri);
         }
 
         // GET: CustomersController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var model = await _service.FindAsync(id);
+            return View(model);
         }
 
         // POST: CustomersController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Musteri musteri )
         {
             try
             {
+                _service.Delete(musteri);
+                _service.SaveAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch
