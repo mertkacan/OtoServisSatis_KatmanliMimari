@@ -1,6 +1,8 @@
 using OtoServisSatis.Data;
 using OtoServisSatis.Service.Interfaces;
 using OtoServisSatis.Service.SomutSýnýflar;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,17 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DatabaseContext>();
 
-builder.Services.AddTransient(typeof(IService<>),typeof(Service<>));
+builder.Services.AddTransient(typeof(IService<>), typeof(Service<>));
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
+{
+    x.LoginPath = "/Admin/Login";         // Uygulamamýza kullanýcýlar nereden üye olucak demektir.
+    x.AccessDeniedPath = "/AccessDenied"; // Eriþim engellendi hatasý demektir.
+    x.LogoutPath= "/Admin/Logout";        // Çýkýþ adresini belirttim.
+    x.Cookie.Name = "Admin";             // Oluþturduðum Cookie'nin adýný belirttim.
+    x.Cookie.MaxAge=TimeSpan.FromDays(7); // Giriþ yapan kullanýcý 7 gün boyunca giriþ yapabilsin demektir.
+    x.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -25,6 +37,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

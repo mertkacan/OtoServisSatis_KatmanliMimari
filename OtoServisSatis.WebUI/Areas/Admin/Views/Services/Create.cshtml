@@ -1,0 +1,76 @@
+﻿@model OtoServisSatis.Entities.Servis
+
+@{
+    ViewData["Title"] = "Servis Kaydı Ekleme";
+}
+
+<h1>Servis Kaydı Ekleme Sayfası</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div>
+                <label asp-for="ServiseGelisTarihi"></label>
+                <input asp-for="ServiseGelisTarihi" class="form-control" />
+                <span asp-validation-for="ServiseGelisTarihi" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="AracSorunu"></label>
+                <input asp-for="AracSorunu" class="form-control" />
+                <span asp-validation-for="AracSorunu" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="ServisUcreti"></label>
+                <input asp-for="ServisUcreti" class="form-control" />
+                <span asp-validation-for="ServisUcreti" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="ServistenCikisTarihi"></label>
+                <input asp-for="ServistenCikisTarihi" class="form-control" />
+                <span asp-validation-for="ServistenCikisTarihi" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="YapilanIslemler"></label>
+                <input asp-for="YapilanIslemler" class="form-control" />
+                <span asp-validation-for="YapilanIslemler" class="text-danger"></span>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="GarantiKapsamindaMi" /> Satışta mı?
+                </label>
+            </div>
+            <div>
+                <label asp-for="AracPlaka"></label>
+                <input asp-for="AracPlaka" class="form-control" />
+                <span asp-validation-for="AracPlaka" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Marka"></label>
+                <input asp-for="Marka" class="form-control" />
+                <span asp-validation-for="Marka" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Model"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="KasaTipi"></label>
+                <input asp-for="KasaTipi" class="form-control" />
+                <span asp-validation-for="KasaTipi" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="SaseNo"></label>
+                <input asp-for="SaseNo" class="form-control" />
+                <span asp-validation-for="SaseNo" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Notlar"></label>
+                <input asp-for="Notlar" class="form-control" />
+                <span asp-validation-for="Notlar" class="text-danger"></span>
+            </div>
+            <input class="btn btn-primary my-2" type="submit" value="Ekle" />
+        </form>
+    </div>
+
+</div>

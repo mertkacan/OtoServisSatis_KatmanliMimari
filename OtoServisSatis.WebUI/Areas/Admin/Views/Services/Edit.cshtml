@@ -1,0 +1,67 @@
+﻿@model OtoServisSatis.Entities.Servis
+
+@{
+    ViewData["Title"] = "Servis Kayıt Düzenleme Sayfası";
+}
+
+<h1>Servis Kayıt Düzenleme Sayfası</h1>
+
+<div class="row">
+    <div class="col md-4">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger "></div>
+            <input type="hidden" asp-for="Id" /> @*Eklenme tarihi güncellenmesini engeller*@
+
+            <div class="form-group">
+                <label asp-for="ServiseGelisTarihi" class="control-label"></label>
+                <input asp-for="ServiseGelisTarihi" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="AracSorunu" class="control-label"></label>
+                <input asp-for="AracSorunu" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ServisUcreti" class="control-label"></label>
+                <input asp-for="ServisUcreti" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ServistenCikisTarihi" class="control-label"></label>
+                <input asp-for="ServistenCikisTarihi" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="YapilanIslemler" class="control-label"></label>
+                <input asp-for="YapilanIslemler" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="GarantiKapsamindaMi" class="control-label"></label>
+                <input asp-for="GarantiKapsamindaMi" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="AracPlaka" class="control-label"></label>
+                <input asp-for="AracPlaka" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Marka" class="control-label"></label>
+                <input asp-for="Marka" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="KasaTipi" class="control-label"></label>
+                <input asp-for="KasaTipi" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="SaseNo" class="control-label"></label>
+                <input asp-for="SaseNo" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Notlar" class="control-label"></label>
+                <input asp-for="Notlar" class="form-control" />
+            </div>
+
+            <input type="submit" value="Kaydet" class="btn btn-primary mt-2" />
+        </form>
+    </div>
+</div>

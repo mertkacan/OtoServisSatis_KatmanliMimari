@@ -1,0 +1,94 @@
+﻿@model OtoServisSatis.Entities.Servis
+
+@{
+    ViewData["Title"] = "Servis Kayıt Silme Sayfası";
+}
+
+<h1>Servis Kayıt Silme Sayfası</h1>
+
+<h4>Silme işlemi yapmaktan emin olunuz.</h4>
+
+<div>
+    <h4>Servis Kayıt</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Servise Geliş Tarihi
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ServiseGelisTarihi)
+        </dd>
+        <dt class="col-sm-2">
+            Araç Sorunu
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AracSorunu)
+        </dd>
+        <dt class="col-sm-2">
+            Servis Ücreti
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ServisUcreti)
+        </dd>
+        <dt class="col-sm-2">
+            Servisten Çıkış Tarihi
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ServistenCikisTarihi)
+        </dd>
+        <dt class="col-sm-2">
+            Yapılan İşlemler
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.YapilanIslemler)
+        </dd>
+        <dt class="col-sm-2">
+            Garanti kapsamında mı?
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GarantiKapsamindaMi)
+        </dd>
+        <dt class="col-sm-2">
+            Araç Plaka
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AracPlaka)
+        </dd>
+        <dt class="col-sm-2">
+            Marka
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Marka)
+        </dd>
+        <dt class="col-sm-2">
+            Model
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+        <dt class="col-sm-2">
+            Kasa Tipi
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.KasaTipi)
+        </dd>
+        <dt class="col-sm-2">
+            Şase No
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SaseNo)
+        </dd>
+        <dt class="col-sm-2">
+            Notlar
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Notlar)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Sil" class="btn btn-danger" />
+        <a asp-action="Index">Listeye Geri Dön</a>
+    </form>
+</div>

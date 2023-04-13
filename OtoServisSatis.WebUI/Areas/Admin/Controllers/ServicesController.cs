@@ -1,23 +1,29 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OtoServisSatis.Entities;
 using OtoServisSatis.Service.Interfaces;
 
 namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize]
     public class ServicesController : Controller
     {
         private readonly IService<Servis> _service;
+        private readonly IService<Marka> _serviceMarka;
+        private readonly IService<Arac> _serviceArac;
 
-        public ServicesController(IService<Servis> service)
+        public ServicesController(IService<Servis> service, IService<Marka> serviceMarka, IService<Arac> serviceArac)
         {
             _service = service;
+            _serviceMarka = serviceMarka;
+            _serviceArac = serviceArac;
         }
         // GET: ServicesController
         public async Task<ActionResult> Index()
         {
-            var modeller = _service.GetAllAsync();
+            var modeller = await _service.GetAllAsync();
             return View(modeller);
         }
 
@@ -30,37 +36,48 @@ namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
         // GET: ServicesController/Create
         public ActionResult Create()
         {
+            ViewBag.MarkaId = new SelectList(_serviceMarka.GetAll(), "Id", "Adi");
+            ViewBag.AracId = new SelectList(_serviceArac.GetAll(), "Id", "Modeli");
             return View();
         }
 
         // POST: ServicesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Servis servis)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _service.Add(servis);
+                    _service.Save();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Hata oluştu");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(servis);
         }
 
         // GET: ServicesController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var model = await _service.FindAsync(id);
+            return View(model);
         }
 
         // POST: ServicesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Servis servis)
         {
             try
             {
+                _service.Update(servis);
+                _service.Save();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -70,18 +87,21 @@ namespace OtoServisSatis.WebUI.Areas.Admin.Controllers
         }
 
         // GET: ServicesController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var model = await _service.FindAsync(id);
+            return View(model);
         }
 
         // POST: ServicesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Servis servis)
         {
             try
             {
+                _service.Delete(servis);
+                _service.Save();
                 return RedirectToAction(nameof(Index));
             }
             catch
